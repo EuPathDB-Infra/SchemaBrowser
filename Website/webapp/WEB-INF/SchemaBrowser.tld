@@ -10,7 +10,7 @@
 	
 	<tag>
   		<name>WriteName</name>
-  		<tag-class>org.gusdb.schemabrowser.tag.WriteNameTag</tag-class>
+  		<tag-class>org.gusdb.schemabrowser.website.tag.WriteNameTag</tag-class>
 	  	<body-content>empty</body-content>
 		<attribute>
 			<name>table</name>
@@ -21,7 +21,7 @@
 	</tag>	
 	<tag>
   		<name>WriteSuperclass</name>
-  		<tag-class>org.gusdb.schemabrowser.tag.WriteSuperclassTag</tag-class>
+  		<tag-class>org.gusdb.schemabrowser.website.tag.WriteSuperclassTag</tag-class>
 	  	<body-content>empty</body-content>
 		<attribute>
 			<name>table</name>
@@ -32,7 +32,7 @@
 	</tag>	
 	<tag>
   		<name>WriteCategory</name>
-  		<tag-class>org.gusdb.schemabrowser.tag.WriteCategoryTag</tag-class>
+  		<tag-class>org.gusdb.schemabrowser.website.tag.WriteCategoryTag</tag-class>
 	  	<body-content>empty</body-content>
 		<attribute>
 			<name>table</name>
@@ -43,7 +43,7 @@
 	</tag>
 	<tag>
   		<name>WriteAction</name>
-  		<tag-class>org.gusdb.schemabrowser.tag.WriteActionTag</tag-class>
+  		<tag-class>org.gusdb.schemabrowser.website.tag.WriteActionTag</tag-class>
 	  	<body-content>empty</body-content>
 		<attribute>
 			<name>table</name>
@@ -54,7 +54,7 @@
 	</tag>
 	<tag>
   		<name>WriteDocumentation</name>
-  		<tag-class>org.gusdb.schemabrowser.tag.WriteDocumentationTag</tag-class>
+  		<tag-class>org.gusdb.schemabrowser.website.tag.WriteDocumentationTag</tag-class>
 	  	<body-content>empty</body-content>
 		<attribute>
 			<name>table</name>
@@ -65,7 +65,7 @@
 	</tag>
 	<tag>
 		<name>WriteAttributeRow</name>
-		<tag-class>org.gusdb.schemabrowser.tag.WriteAttributeRowTag</tag-class>
+		<tag-class>org.gusdb.schemabrowser.website.tag.WriteAttributeRowTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>column</name>

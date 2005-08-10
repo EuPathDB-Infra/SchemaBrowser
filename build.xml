@@ -1,0 +1,124 @@
+<project name="SchemaBrowser" default="Installation" basedir=".">
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="SchemaBrowser-Installation" depends="SchemaBrowser/Website-Installation" >
+    <ant target="defaultProjectInstall"/>
+  </target>
+   
+
+  <!-- oooooooooooooooooo  Installation Postprocess  ooooooooooooooooooooo -->
+
+  <target name="WDK-Installation-postprocess">
+    <echo message="Postprocessing the WDK installation"/>
+
+    <replace dir="${targetDir}/bin" 
+             propertyFile="${targetDir}/config/replacements.prop" > 
+      <include name="**/*" />
+      <replacefilter token="@perl@" property="perl"/>
+    </replace> 
+
+  </target>
+
+
+  <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
+
+  <target name="SchemaBrowser/Website-Installation" depends="ProjectTree,GenerateMappings">
+    <ant target="defaultComponentInstall">
+      <property name="project" value="SchemaBrowser"/>
+      <property name="component" value="Website"/>
+    </ant>
+  </target>
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooo  Web Installation  oooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="SchemaBrowser-WebInstallation" depends="WebsitePlusGusHome">
+ </target>
+
+  <target name="SchemaBrowser/Website-WebInstallation" depends="ProjectTree">
+    <ant target="defaultWebComponentInstall">
+      <property name="project" value="SchemaBrowser"/>
+      <property name="component" value="Website"/>
+    </ant>
+  </target>
+
+  <target name="WebsitePlusGusHome" depends="SchemaBrowser/Website-WebInstallation,checkLinks,libLink"/>
+
+  <target name="checkLinks">
+     <available file="${webappTargetDir}/WEB-INF/lib" property="libLinkExists"/>
+  </target>
+
+  <target name="libLink" unless="libLinkExists">
+    <symlink link="${webappTargetDir}/WEB-INF/lib" resource="${targetDir}/lib/java"/>
+  </target>
+    
+  <target name="GenerateMappings" 
+        description="Generates Hibernate class descriptor files.">
+
+        <!-- Define the hibernatedoclet task -->
+        <taskdef name="hibernatedoclet"
+            classname="xdoclet.modules.hibernate.HibernateDocletTask">
+            <classpath>
+                <fileset dir="${targetDir}/lib/java">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </taskdef>
+    
+        <!-- Execute the hibernatedoclet task -->
+        <hibernatedoclet force="true" destDir="${webappTargetDir}/WEB-INF/classes"
+            mergeDir="${webappTargetDir}/WEB-INF/classes" verbose="false">
+        
+            <fileset dir="${projectsDir}/SchemaBrowser/Website/src/java">
+                <include name="**/*.java"/>
+            </fileset>
+        
+            <hibernate version="3.0"/>
+        </hibernatedoclet>
+    </target>
+  
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="WDK-Release">
+    
+    <ant target="defaultProjectRelease">
+      <property name="cvsroot" value=":ext:cvs.sanger.ac.uk:/cvsroot/GUS"/>
+    </ant>
+  </target>  
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  Distributable  ooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="WDK-Distributable" depends="ProjectTree">
+
+    <copy todir="${targetDir}">
+      <fileset dir="${projectsDir}" >
+        <exclude name="**/CVS/*" />
+      </fileset>
+    </copy>  
+  </target>  
+
+
+
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooo  ProjectTree  ooooooooooooooooooooooooooo -->
+  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
+
+  <target name="ProjectTree" if="${checkout}">
+    <ant target="projectCheckOut"/>
+  </target>  
+
+</project>
+
+

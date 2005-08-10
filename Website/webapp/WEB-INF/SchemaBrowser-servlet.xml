@@ -2,20 +2,20 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 	<!--  Controllers -->
-  <bean id="TableDisplayController" class="org.gusdb.schemabrowser.controller.TableDisplayController">
+  <bean id="TableDisplayController" class="org.gusdb.schemabrowser.website.controller.TableDisplayController">
     <property name="databaseFactory"><ref bean="databaseFactory" /></property>
 	<property name="documentationDAO"><ref bean="documentationDAO"/></property>
   </bean>
-  <bean id="CategoryDisplayController" class="org.gusdb.schemabrowser.controller.CategoryDisplayController">
+  <bean id="CategoryDisplayController" class="org.gusdb.schemabrowser.website.controller.CategoryDisplayController">
     <property name="databaseFactory"><ref bean="databaseFactory" /></property>
 	<property name="documentationDAO"><ref bean="documentationDAO"/></property>
   </bean>
-  <bean id="EditDocumentationController" class="org.gusdb.schemabrowser.controller.EditDocumentationController">
+  <bean id="EditDocumentationController" class="org.gusdb.schemabrowser.website.controller.EditDocumentationController">
   	<property name="databaseFactory"><ref bean="databaseFactory" /></property>
   	<property name="documentationDAO"><ref bean="documentationDAO"/></property>
   	<property name="sessionForm"><value>true</value></property>
   	<property name="commandName"><value>documentation</value></property>
-  	<property name="commandClass"><value>org.gusdb.schemabrowser.model.Documentation</value></property>
+  	<property name="commandClass"><value>org.gusdb.schemabrowser.website.model.Documentation</value></property>
   	<property name="validator"><ref bean="documentationValidator"/></property>
   	<property name="formView"><value>edit/edit</value></property>
   	<property name="successView"><value>../tableList.htm</value></property>
@@ -69,16 +69,16 @@
   </bean>
   
   <!--  Local Bean Settings  -->
-    <bean id="databaseFactory" class="org.gusdb.schemabrowser.DatabaseFactory">
+    <bean id="databaseFactory" class="org.gusdb.schemabrowser.website.DatabaseFactory">
     <property name="databaseSource"><value>/Users/msaffitz/cvswork/projecthome35/GusSchema/Definition/config/gus_schema.xml</value></property>
     <property name="categorySource"><value>/Users/msaffitz/cvswork/projecthome35/GusSchema/Definition/config/gus_categories.xml</value></property>
     <property name="propertyFile"><value>/Users/msaffitz/cvswork/projecthome35/install/gus.config</value></property>
   </bean>
 
-  <bean id="documentationDAO" class="org.gusdb.schemabrowser.dao.DocumentationDAO">
+  <bean id="documentationDAO" class="org.gusdb.schemabrowser.website.dao.DocumentationDAO">
     <property name="sessionFactory"><ref bean="sessionFactory" /></property>
   </bean>
 
-  <bean id="documentationValidator" class="org.gusdb.schemabrowser.model.DocumentationValidator"/>
+  <bean id="documentationValidator" class="org.gusdb.schemabrowser.website.model.DocumentationValidator"/>
    	
 </beans>
