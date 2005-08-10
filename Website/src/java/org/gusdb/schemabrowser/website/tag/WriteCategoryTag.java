@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gusdb.schemabrowser.tag;
+package org.gusdb.schemabrowser.website.tag;
 
 import java.io.IOException;
 

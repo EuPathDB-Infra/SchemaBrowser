@@ -1,7 +1,7 @@
 /**
  * $Id:$
  */
-package org.gusdb.schemabrowser.controller;
+package org.gusdb.schemabrowser.website.controller;
 
 import java.io.IOException;
 

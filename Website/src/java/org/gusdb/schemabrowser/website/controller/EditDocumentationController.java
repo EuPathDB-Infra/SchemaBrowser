@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gusdb.schemabrowser.controller;
+package org.gusdb.schemabrowser.website.controller;
 
 import java.util.Iterator;
 
@@ -13,9 +13,9 @@ import org.apache.commons.logging.LogFactory;
 import org.gusdb.dbadmin.model.GusColumn;
 import org.gusdb.dbadmin.model.GusTable;
 import org.gusdb.dbadmin.model.Schema;
-import org.gusdb.schemabrowser.DatabaseFactory;
-import org.gusdb.schemabrowser.dao.DocumentationDAO;
-import org.gusdb.schemabrowser.model.Documentation;
+import org.gusdb.schemabrowser.website.DatabaseFactory;
+import org.gusdb.schemabrowser.website.dao.DocumentationDAO;
+import org.gusdb.schemabrowser.website.model.Documentation;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;

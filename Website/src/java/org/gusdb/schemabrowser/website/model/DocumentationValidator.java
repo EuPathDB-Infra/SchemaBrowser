@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gusdb.schemabrowser.model;
+package org.gusdb.schemabrowser.website.model;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

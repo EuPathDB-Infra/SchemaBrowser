@@ -2,7 +2,7 @@
  * $Id$
  */
 
-package org.gusdb.schemabrowser;
+package org.gusdb.schemabrowser.website;
 
 import java.util.Iterator;
 

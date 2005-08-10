@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.gusdb.schemabrowser.model;
+package org.gusdb.schemabrowser.website.model;
 
 import java.io.Serializable;
 import java.util.Date;

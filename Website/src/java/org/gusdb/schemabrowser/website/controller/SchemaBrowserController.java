@@ -1,7 +1,7 @@
 /**
  * $Id:$
  */
-package org.gusdb.schemabrowser.controller;
+package org.gusdb.schemabrowser.website.controller;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -9,8 +9,8 @@ import java.util.Iterator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.gusdb.dbadmin.model.GusTable;
-import org.gusdb.schemabrowser.DatabaseFactory;
-import org.gusdb.schemabrowser.dao.DocumentationDAO;
+import org.gusdb.schemabrowser.website.DatabaseFactory;
+import org.gusdb.schemabrowser.website.dao.DocumentationDAO;
 import org.springframework.web.servlet.mvc.Controller;
 
 public abstract class SchemaBrowserController implements Controller {

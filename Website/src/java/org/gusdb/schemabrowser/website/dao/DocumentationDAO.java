@@ -1,7 +1,7 @@
 /**
  * $Id:$
  */
-package org.gusdb.schemabrowser.dao;
+package org.gusdb.schemabrowser.website.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.gusdb.schemabrowser.model.Documentation;
+import org.gusdb.schemabrowser.website.model.Documentation;
 import org.springframework.orm.hibernate.support.HibernateDaoSupport;
 
 /**
