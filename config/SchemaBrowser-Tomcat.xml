@@ -1,0 +1,11 @@
+<Context path="/SchemaBrowser"
+          docBase="/www/SchemaBrowser/webapp"
+          debug="1"
+          privileged="false"
+          allowLinking="true">
+    <Logger className="org.apache.catalina.logger.FileLogger"
+          prefix="schemabrowser-log."
+          suffix=".txt"
+          timestamp="true"
+          docBase="/www/SchemaBrowser/logs/" />
+</Context>

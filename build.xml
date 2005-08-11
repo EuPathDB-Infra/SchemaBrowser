@@ -4,32 +4,35 @@
   <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
+  <target name="GUS/DBAdmin-Installation">
+    <ant antfile="../GUS/build.xml" target="GUS/DBAdmin-Installation">
+      <property name="project" value="GUS"/>
+      <property name="Component" value="DBAdmin"/>
+      <property name="version" value="3.5"/>
+    </ant>
+  </target>
+  <target name="GusSchema-Installation">
+    <ant antfile="../GusSchema/build.xml" target="GusSchema-Installation">
+      <property name="project" value="GusSchema"/>
+      <property name="version" value="3.5"/>
+    </ant>
+  </target>
+
+
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
-  <target name="SchemaBrowser-Installation" depends="SchemaBrowser/Website-Installation" >
+  <target name="SchemaBrowser-Installation" depends="GUS/DBAdmin-Installation,
+                                                     GusSchema-Installation,
+                                                     SchemaBrowser/Website-Installation" >
     <ant target="defaultProjectInstall"/>
   </target>
    
 
-  <!-- oooooooooooooooooo  Installation Postprocess  ooooooooooooooooooooo -->
-
-  <target name="WDK-Installation-postprocess">
-    <echo message="Postprocessing the WDK installation"/>
-
-    <replace dir="${targetDir}/bin" 
-             propertyFile="${targetDir}/config/replacements.prop" > 
-      <include name="**/*" />
-      <replacefilter token="@perl@" property="perl"/>
-    </replace> 
-
-  </target>
-
-
   <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
 
-  <target name="SchemaBrowser/Website-Installation" depends="ProjectTree,GenerateMappings">
+  <target name="SchemaBrowser/Website-Installation" depends="ProjectTree">
     <ant target="defaultComponentInstall">
       <property name="project" value="SchemaBrowser"/>
       <property name="component" value="Website"/>
@@ -40,8 +43,7 @@
   <!-- oooooooooooooooooooooooo  Web Installation  oooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
-  <target name="SchemaBrowser-WebInstallation" depends="WebsitePlusGusHome">
- </target>
+  <target name="SchemaBrowser-WebInstallation" depends="WebsitePlusGusHome"/>
 
   <target name="SchemaBrowser/Website-WebInstallation" depends="ProjectTree">
     <ant target="defaultWebComponentInstall">
@@ -50,7 +52,7 @@
     </ant>
   </target>
 
-  <target name="WebsitePlusGusHome" depends="SchemaBrowser/Website-WebInstallation,checkLinks,libLink"/>
+  <target name="WebsitePlusGusHome" depends="SchemaBrowser/Website-WebInstallation,checkLinks,libLink,GenerateMappings"/>
 
   <target name="checkLinks">
      <available file="${webappTargetDir}/WEB-INF/lib" property="libLinkExists"/>
@@ -67,7 +69,7 @@
         <taskdef name="hibernatedoclet"
             classname="xdoclet.modules.hibernate.HibernateDocletTask">
             <classpath>
-                <fileset dir="${targetDir}/lib/java">
+                <fileset dir="${projectsDir}/SchemaBrowser/Website/lib/java">
                     <include name="*.jar"/>
                 </fileset>
             </classpath>

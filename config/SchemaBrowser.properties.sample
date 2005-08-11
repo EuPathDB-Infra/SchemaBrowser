@@ -1,0 +1,13 @@
+webappTargetDir=/www/SchemaBrowser/webapp
+
+db.driver=oracle.jdbc.driver.OracleDriver
+db.url=jdbc:oracle:oci:@cbilbld
+db.username=schemabrowser
+db.password=
+
+schema.location=/www/SchemaBrowser/gus_home/config/gus_schema.xml
+category.location=/www/SchemaBrowser/gus_home/config/gus_categories.xml
+property.location=/www/SchemaBrowser/gus_home/config/gus.config
+
+hibernate.dialect=net.sf.hibernate.dialect.OracleDialect
+hibernate.show_sql=false

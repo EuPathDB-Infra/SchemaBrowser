@@ -18,10 +18,13 @@
   	<property name="commandClass"><value>org.gusdb.schemabrowser.website.model.Documentation</value></property>
   	<property name="validator"><ref bean="documentationValidator"/></property>
   	<property name="formView"><value>edit/edit</value></property>
-  	<property name="successView"><value>../tableList.htm</value></property>
+  	<property name="successView"><value>../categoryList.htm</value></property>
   </bean>
 	
 	<!--  Spring Requirements -->
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location"><value>/WEB-INF/SchemaBrowser.properties</value></property>
+  </bean>
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property>
     <property name="prefix"><value>/WEB-INF/jsp/</value>
@@ -47,9 +50,8 @@
     </property>
     <property name="hibernateProperties">
       <props>
-        <prop key="hibernate.dialect">net.sf.hibernate.dialect.PostgreSQLDialect</prop>
-<!--    <prop key="hibernate.show_sql">true</prop>  -->
-<!--    <prop key="hibernate.hbm2ddl.auto">create-drop</prop>   -->
+        <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+        <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
       </props>
     </property>
     <property name="dataSource"><ref bean="dataSource" /></property>
@@ -62,17 +64,17 @@
   
   <!--  Database Settings -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName"><value>org.postgresql.Driver</value></property>
-    <property name="url"><value>jdbc:postgresql:doc</value></property>
-    <property name="username"><value>msaffitz</value></property>
-    <property name="password"><value></value></property>
+    <property name="driverClassName"><value>${db.driver}</value></property>
+    <property name="url"><value>${db.url}</value></property>
+    <property name="username"><value>${db.username}</value></property>
+    <property name="password"><value>${db.password}</value></property>
   </bean>
   
   <!--  Local Bean Settings  -->
-    <bean id="databaseFactory" class="org.gusdb.schemabrowser.website.DatabaseFactory">
-    <property name="databaseSource"><value>/Users/msaffitz/cvswork/projecthome35/GusSchema/Definition/config/gus_schema.xml</value></property>
-    <property name="categorySource"><value>/Users/msaffitz/cvswork/projecthome35/GusSchema/Definition/config/gus_categories.xml</value></property>
-    <property name="propertyFile"><value>/Users/msaffitz/cvswork/projecthome35/install/gus.config</value></property>
+  <bean id="databaseFactory" class="org.gusdb.schemabrowser.website.DatabaseFactory">
+    <property name="databaseSource"><value>${schema.location}</value></property>
+    <property name="categorySource"><value>${category.location}</value></property>
+    <property name="propertyFile"><value>${property.location}</value></property>
   </bean>
 
   <bean id="documentationDAO" class="org.gusdb.schemabrowser.website.dao.DocumentationDAO">
