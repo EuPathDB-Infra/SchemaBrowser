@@ -61,18 +61,22 @@ public class DocumentationDAO extends HibernateDaoSupport {
     
     private Documentation fetchObject( String schema, String table, String attribute ) {
         ArrayList values = new ArrayList();
-        values.add(schema);
+        values.add(schema.toLowerCase());
         
-        String query = "from Documentation where schemaname = ? ";
+        String query = "from Documentation where lower(schemaname) = ? ";
 
         if ( table != null && ! table.equalsIgnoreCase("null") ) {
-            query = query.concat(" and tablename = ? ");
-            values.add(table);
+            query = query.concat(" and lower(tablename) = ? ");
+            values.add(table.toLowerCase());
             if ( attribute != null && ! attribute.equalsIgnoreCase("null") ) {
-                query = query.concat( " and attributename = ? ");
-                values.add(attribute);
-            }
-        }
+                query = query.concat( " and lower(attributename) = ? ");
+                values.add(attribute.toLowerCase());
+            } else {
+		query = query.concat( " and attributename is null ");
+	    }
+	} else {
+	    query = query.concat( " and tablename is null ");
+	}
         
         query = query.concat( "order by createdon desc");
 
