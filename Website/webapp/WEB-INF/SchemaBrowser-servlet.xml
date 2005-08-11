@@ -40,12 +40,20 @@
       </props>
     </property>
   </bean>
+
+  <!--  Database Settings -->
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName"><value>${db.driver}</value></property>
+    <property name="url"><value>${db.url}</value></property>
+    <property name="username"><value>${db.username}</value></property>
+    <property name="password"><value>${db.password}</value></property>
+  </bean>
     
   <!-- Hibernate Requirements  -->
   <bean id="sessionFactory" class="org.springframework.orm.hibernate.LocalSessionFactoryBean">
     <property name="mappingResources">
       <list>
-        <value>org/gusdb/schemabrowser/model/Documentation.hbm.xml</value>
+        <value>org/gusdb/schemabrowser/website/model/Documentation.hbm.xml</value>
       </list>
     </property>
     <property name="hibernateProperties">
@@ -60,16 +68,7 @@
   <bean id="transactionManager" class="org.springframework.orm.hibernate.HibernateTransactionManager">
     <property name="sessionFactory"><ref bean="sessionFactory" /></property>
   </bean>
-  
-  
-  <!--  Database Settings -->
-  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName"><value>${db.driver}</value></property>
-    <property name="url"><value>${db.url}</value></property>
-    <property name="username"><value>${db.username}</value></property>
-    <property name="password"><value>${db.password}</value></property>
-  </bean>
-  
+    
   <!--  Local Bean Settings  -->
   <bean id="databaseFactory" class="org.gusdb.schemabrowser.website.DatabaseFactory">
     <property name="databaseSource"><value>${schema.location}</value></property>

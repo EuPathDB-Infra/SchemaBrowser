@@ -52,7 +52,8 @@
     </ant>
   </target>
 
-  <target name="WebsitePlusGusHome" depends="SchemaBrowser/Website-WebInstallation,checkLinks,libLink,GenerateMappings"/>
+  <target name="WebsitePlusGusHome" depends="SchemaBrowser/Website-WebInstallation,checkLinks,libLink,
+                                             GenerateMappings,CopyProperties"/>
 
   <target name="checkLinks">
      <available file="${webappTargetDir}/WEB-INF/lib" property="libLinkExists"/>
@@ -87,6 +88,11 @@
         </hibernatedoclet>
     </target>
   
+  <target name="CopyProperties">
+      <copy file="${targetDir}/config/SchemaBrowser.properties"
+            tofile="${webappTargetDir}/WEB-INF/SchemaBrowser.properties"/>
+  </target>
+
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
