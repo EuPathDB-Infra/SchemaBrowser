@@ -27,11 +27,11 @@ public abstract class SchemaBrowserController implements Controller {
             GusTable table = (GusTable) i.next( );
             table.setDocumentation( getDocumentationDAO( ).getDocumentation( table.getSchema( ).getName( ),
                     table.getName( ) ) );
-	    for ( Iterator j = table.getColumnsExcludeSuperclass( false ).iterator( ); j.hasNext( ); ) {  
-		GusColumn col = (GusColumn) j.next( );  
-		col.setDocumentation( getDocumentationDAO( ).getDocumentation( table.getSchema( ).getName( ),  
-									       table.getName( ), col.getName( ) ) );  
-	    }
+            for ( Iterator j = table.getColumnsExcludeSuperclass( false ).iterator( ); j.hasNext( ); ) {
+                GusColumn col = (GusColumn) j.next( );
+                col.setDocumentation( getDocumentationDAO( ).getDocumentation( table.getSchema( ).getName( ),
+                        table.getName( ), col.getName( ) ) );
+            }
         }
     }
 

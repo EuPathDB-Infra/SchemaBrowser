@@ -6,6 +6,7 @@ package org.gusdb.schemabrowser.website.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -41,8 +42,10 @@ public class DocumentationDAO extends HibernateDaoSupport {
     }
 
     public Documentation getDocumentationObject( String schema, String table, String attribute ) {
+        if ( docCache.isEmpty()) cacheAll();
+
         String key = (schema + table + attribute).toLowerCase();
-        
+
         if ( docCache.containsKey( key )) { 
             return (Documentation) docCache.get( key );
         } else {
@@ -88,10 +91,29 @@ public class DocumentationDAO extends HibernateDaoSupport {
         return (Documentation) docColl.get(0);
     }
     
+    private String getKey(Documentation doc) {
+        return (doc.getSchemaName() + doc.getTableName() + doc.getAttributeName()).toLowerCase();
+    }
+    
     private void cacheObject(Documentation doc) {
-        String key = (doc.getSchemaName() + doc.getTableName() + doc.getAttributeName()).toLowerCase();
+        String key = getKey(doc);
         log.debug("Caching: '" + key + "'");
         docCache.put(key, doc);
+    }
+    
+    private void cacheAll() {
+        log.info("Caching all Objects");
+        
+        List docColl = getHibernateTemplate().find("from Documentation order by createdon desc");
+        if ( docColl.isEmpty()) {
+            log.warn("Failed to cache any object objects when trying to cache all");
+            return;
+        }
+        
+        for ( Iterator i = docColl.iterator(); i.hasNext(); ) {
+            Documentation doc = (Documentation) i.next();
+            if ( ! docCache.containsKey( getKey(doc)) ) cacheObject(doc);
+        }
     }
 
 }
