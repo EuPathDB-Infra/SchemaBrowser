@@ -80,4 +80,15 @@
 			<type>boolean</type>
 		</attribute>
 	</tag>
+	<tag>
+		<name>WriteChildren</name>
+		<tag-class>org.gusdb.schemabrowser.website.tag.WriteChildrenTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>table</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>org.gusdb.dbadmin.model.Table</type>
+		</attribute>
+	</tag>
 </taglib>

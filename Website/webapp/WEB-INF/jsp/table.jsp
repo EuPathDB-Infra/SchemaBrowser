@@ -38,12 +38,16 @@
 
 </table>
 <p/>
-<FONT FACE="helvetica, sans-serif"><B>Child tables:</B></FONT>
+<FONT FACE="helvetica, sans-serif"><B>Child tables:</B></FONT><p/>
+	<sb:WriteChildren table="${table}"/>
+<p/>
+
+<FONT FACE="helvetica, sans-serif"><B>Subclasses:</B></FONT><p/>
 
 <c:forEach items="${table.subclasses}" var="subclass">
 	<a href="table.htm?schema=${subclass.schema.name}&table=${subclass.name}">
 		${subclass.schema.name}::${subclass.name}
-	</a> &nbsp;
+	</a> <br/>
 </c:forEach>
 
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>
