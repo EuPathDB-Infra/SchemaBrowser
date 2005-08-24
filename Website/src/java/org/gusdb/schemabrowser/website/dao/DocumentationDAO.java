@@ -42,15 +42,10 @@ public class DocumentationDAO extends HibernateDaoSupport {
     }
 
     public Documentation getDocumentationObject( String schema, String table, String attribute ) {
-        if ( docCache.isEmpty()) cacheAll();
+        if ( docCache.isEmpty() ) cacheAll();
 
         String key = (schema + table + attribute).toLowerCase();
-
-        if ( docCache.containsKey( key )) { 
-            return (Documentation) docCache.get( key );
-        } else {
-            return fetchObject( schema, table, attribute);
-        }
+        return (Documentation) docCache.get( key );
     }
 
     /**
