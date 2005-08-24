@@ -9,8 +9,10 @@
 		</c:if>
 </FONT>
 
+<p>${table.documentation}</p>
+
 <c:if test='${not empty table.superclass}'>
-	<p>Light grey rows indicate columns provided from the superclass.</p>
+	<p>Light yellow rows indicate columns provided from the superclass.</p>
 </c:if>
 
 <table id="tableDisplay">
