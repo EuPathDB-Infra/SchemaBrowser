@@ -9,7 +9,7 @@
 <table id="tableDisplay">
 	<tr class="tableRow">
 		<td class="columnHead"></td>
-		<td class="columnHead"></td>
+		<td class="columnHead">Table</td>
 		<td class="columnHead">Superclass</td>
 		<td class="columnHead"></td>
 	</tr>
