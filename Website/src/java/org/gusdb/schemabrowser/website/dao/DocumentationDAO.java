@@ -57,35 +57,6 @@ public class DocumentationDAO extends HibernateDaoSupport {
         cacheObject(doc);
     }
     
-    private Documentation fetchObject( String schema, String table, String attribute ) {
-        ArrayList values = new ArrayList();
-        values.add(schema.toLowerCase());
-        
-        String query = "from Documentation where lower(schemaname) = ? ";
-
-        if ( table != null && ! table.equalsIgnoreCase("null") ) {
-            query = query.concat(" and lower(tablename) = ? ");
-            values.add(table.toLowerCase());
-            if ( attribute != null && ! attribute.equalsIgnoreCase("null") ) {
-                query = query.concat( " and lower(attributename) = ? ");
-                values.add(attribute.toLowerCase());
-            } else {
-		query = query.concat( " and attributename is null ");
-	    }
-	} else {
-	    query = query.concat( " and tablename is null ");
-	}
-        
-        query = query.concat( "order by createdon desc");
-
-        log.debug("running query: " + query + " with '" + values.subList(0,values.size()).toString() + "'");
-        
-        List docColl = getHibernateTemplate().find(query, values.subList(0,values.size()).toArray() );
-        if ( docColl.size() == 0 ) return null;
-        cacheObject((Documentation) docColl.get(0));
-        return (Documentation) docColl.get(0);
-    }
-    
     private String getKey(Documentation doc) {
         return (doc.getSchemaName() + doc.getTableName() + doc.getAttributeName()).toLowerCase();
     }
