@@ -10,3 +10,10 @@
 	</head>
 <body>
 
+<h1>GUS Schema Browser</h1>
+
+<a href="categoryIndex.htm">Category Index</a> | 
+<a href="categoryList.htm">Category Table View</a> | 
+<a href="tableList.htm">Flat Table View</a> 
+
+<p/>
