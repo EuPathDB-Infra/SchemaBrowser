@@ -39,7 +39,7 @@ td { font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif;
           vertical-align: top;
           font-size: 12px; }
           
-.odd { background-color: #dcdcdc; }
+.odd { background-color: #E8E8E8; }
 
 a { text-decoration: underline; }
 
@@ -81,9 +81,9 @@ a:hover { color: white;
 }
 
 .attrRow { 
-	background-color: #dcdcdc;
+	background-color: #E8E8E8;
 }
 
 .superRow {
-	background-color: #FFFFCC;
+	background-color: #CCFFFF;
 }

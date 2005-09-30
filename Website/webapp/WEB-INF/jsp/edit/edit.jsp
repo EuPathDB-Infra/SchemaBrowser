@@ -1,3 +1,4 @@
+<%! String base="../"; %>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <h1>Edit ${documentation.schemaName}<c:if test='${not empty documentation.tableName}'>::${documentation.tableName}<c:if test='${not empty documentation.attributeName}'>::${documentation.attributeName}

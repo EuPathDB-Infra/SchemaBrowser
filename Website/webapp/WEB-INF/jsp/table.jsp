@@ -1,3 +1,4 @@
+<%! String base = ""; %>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <b><big><a href="tableList.htm">GUS Schema</a> >> ${table.schema.name}::${table.name}</b></big>
@@ -12,7 +13,7 @@
 <p>${table.documentation}</p>
 
 <c:if test='${not empty table.superclass}'>
-	<p>Light yellow rows indicate columns provided from the superclass.</p>
+	<p>Light blue rows indicate columns provided from the superclass.</p>
 </c:if>
 
 <table id="tableDisplay">
