@@ -51,7 +51,7 @@
 </c:forEach>
 
 <tr><td class="superCatRow" colspan="4">
-	<a name="uncat"/>
+	<a name="Uncategorized"/>
 	Uncategorized
     </td>
 </tr>

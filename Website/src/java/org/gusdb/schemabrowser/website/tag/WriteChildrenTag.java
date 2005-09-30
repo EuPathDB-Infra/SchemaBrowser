@@ -84,7 +84,8 @@ public class WriteChildrenTag extends TagSupport {
     }
 
     private void writeCategory( String category, JspWriter out ) throws IOException {
-        out.println( "<strong>" + category + "</strong><br/>" );
+        out.println( "<strong><a href=\"categoryList.htm#c:" + category + "\">" + 
+		     category + "</a></strong><br/>" );
         Collection tabCol = (Collection) categoryTableHash.get( category );
         if ( tabCol == null ) return;
         for ( Iterator j = tabCol.iterator( ); j.hasNext( ); ) {
