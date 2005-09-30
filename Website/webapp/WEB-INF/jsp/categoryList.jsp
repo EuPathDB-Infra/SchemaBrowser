@@ -49,6 +49,25 @@
 	
 </c:forEach>
 
+<tr><td class="superCatRow" colspan="4">
+	<a name="uncat"/>
+	Uncategorized
+    </td>
+</tr>
+
+<c:forEach items="${database.tables}" var="table">
+	<c:if test='${empty table.category}'>
+		<tr class="tableRow <%= row %>">
+			<td>&nbsp;</td>
+			<sb:WriteName table="${table}"/>
+			<sb:WriteSuperclass table="${table}"/>
+			<sb:WriteAction table="${table}"/>
+		</tr>
+	        <sb:WriteDocumentation table="${table}"/>
+	        <% row = row.equals("odd") ? "even" : "odd"; %>
+	</c:if>
+</c:forEach>
+	
 </table>
 
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>
