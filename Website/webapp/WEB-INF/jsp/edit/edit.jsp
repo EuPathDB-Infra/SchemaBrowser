@@ -6,7 +6,7 @@
 </c:if></c:if>
 </h1>
 
-<p>Documentation Instructions</p>
+<p><b>Thank you!</b> for taking the time to improve GUS Documentation</p>
 
 <p>
 	<spring:hasBindErrors name="documentation">

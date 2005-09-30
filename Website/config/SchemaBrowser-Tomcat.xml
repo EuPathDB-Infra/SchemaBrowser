@@ -1,5 +1,5 @@
-<Context path="/SchemaBrowser"
-          docBase="/www/SchemaBrowser/webapp"
+<Context path="/SchemaBrowserDev"
+          docBase="/www/SchemaBrowser/release2.1/webapp"
           debug="1"
           privileged="false"
           allowLinking="true">
@@ -7,5 +7,5 @@
           prefix="schemabrowser-log."
           suffix=".txt"
           timestamp="true"
-          docBase="/www/SchemaBrowser/logs/" />
+          docBase="/www/SchemaBrowser/release2.1/logs/" />
 </Context>

@@ -10,11 +10,19 @@
 		</c:if>
 </FONT>
 
-<p>${table.documentation}</p>
+
+<p>
+
+<p><strong>Category: </strong><a href="categoryList.htm#sc:${table.category.superCategory.name}">${table.category.superCategory.name}</a>::
+	   <a href="categoryList.htm#c:${table.category.name}">${table.category.name}</a><br/>
+   <strong>Documentation: </strong>${table.documentation}
+	<small><a href="edit/edit.htm?schema=${table.schema.name}&table=${table.name}">Edit</a></small>
+</p>
 
 <c:if test='${not empty table.superclass}'>
-	<p>Light blue rows indicate columns provided from the superclass.</p>
+	<p><small>Light blue rows indicate columns provided from the superclass.</small></p>
 </c:if>
+
 
 <table id="tableDisplay">
 	<tr class="tableRow">
