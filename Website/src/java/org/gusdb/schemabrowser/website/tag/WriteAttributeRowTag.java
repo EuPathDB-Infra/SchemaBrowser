@@ -59,13 +59,13 @@ public class WriteAttributeRowTag extends TagSupport {
 
         out.println("<tr class=\"tableRow attrRow" + superRow +  "\">");
         
-        out.println("<td>" + getColumn().getName() + "</td>");
+        out.println("<td>" + getColumn().getName().toLowerCase() + "</td>");
 
         out.print("<td>");
         if (! getColumn().isNullable() ) out.print("no");
         out.println("</td>");
         
-        out.print("<td>" + writeType(getColumn()) + "</td>");
+        out.print("<td>" + writeType(getColumn()).toLowerCase() + "</td>");
         
         if ( getColumn().getClass() == GusColumn.class && 
                 ((GusColumn) getColumn()).getDocumentation() != null ) {
