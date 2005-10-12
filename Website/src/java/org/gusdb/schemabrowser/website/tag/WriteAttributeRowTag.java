@@ -87,7 +87,7 @@ public class WriteAttributeRowTag extends TagSupport {
                 Constraint cons = (Constraint) i.next( );
 
                 if ( cons.getType( ) == ConstraintType.FOREIGN_KEY ) {
-                    return writeRefType( cons ) + "(<small>" + trueType + "</small>)";
+                    return writeRefType( cons );
                 }
                 if ( cons.getType( ) == ConstraintType.PRIMARY_KEY ) {
                     return trueType;
