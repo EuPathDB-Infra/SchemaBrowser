@@ -9,7 +9,6 @@ import java.util.Iterator;
 import org.gusdb.dbadmin.model.Database;
 import org.gusdb.dbadmin.model.GusTable;
 import org.gusdb.dbadmin.reader.XMLReader;
-
 import org.gusdb.dbadmin.util.CategoryReader;
 
 /**
@@ -43,8 +42,8 @@ public class DatabaseFactory {
             XMLReader schemaReader = new XMLReader( getDatabaseSource() );
             db = schemaReader.read( );
             db.setSuperCategories(CategoryReader.readCategories( getCategorySource() ));
-            for ( Iterator i = db.getTables(true).iterator(); i.hasNext(); ) {
-                ((GusTable) i.next()).resolveCategoryReference();
+            for (Iterator<GusTable> i = db.getGusTables().iterator(); i.hasNext(); ) {
+                i.next().resolveCategoryReference();
             }
         }
         return db;

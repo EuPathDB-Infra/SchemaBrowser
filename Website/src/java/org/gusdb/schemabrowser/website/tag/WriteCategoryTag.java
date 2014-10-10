@@ -16,9 +16,12 @@ import org.gusdb.dbadmin.model.GusTable;
  */
 public class WriteCategoryTag extends TableCellWriter {
 
+    private static final long serialVersionUID = 1L;
+
     /* (non-Javadoc)
      * @see org.gusdb.schemabrowser.tag.TableCellWriter#writeCell(javax.servlet.jsp.JspWriter)
      */
+    @Override
     protected void writeCell( JspWriter out ) throws IOException {
         GusTable Ltable = (GusTable) getTable();
         if ( Ltable.getCategory() == null ) return;

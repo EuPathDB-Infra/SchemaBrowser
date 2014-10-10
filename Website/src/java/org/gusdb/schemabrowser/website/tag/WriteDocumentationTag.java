@@ -16,6 +16,8 @@ import org.gusdb.dbadmin.model.GusTable;
  */
 public class WriteDocumentationTag extends TagSupport {
 
+    private static final long serialVersionUID = 1L;
+
     private GusTable table = null;
     
     public void setTable( GusTable table ) {
@@ -26,6 +28,7 @@ public class WriteDocumentationTag extends TagSupport {
         return this.table;
     }
    
+    @Override
     public int doStartTag( ) {
         try {
             JspWriter out = pageContext.getOut( );
@@ -37,6 +40,7 @@ public class WriteDocumentationTag extends TagSupport {
         return SKIP_BODY;
     }
 
+    @Override
     public int doEndTag( ) {
         return SKIP_BODY;
     }

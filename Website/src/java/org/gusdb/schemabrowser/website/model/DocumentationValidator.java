@@ -17,10 +17,13 @@ public class DocumentationValidator implements Validator {
 
     protected final Log log = LogFactory.getLog(getClass());
     
+    @SuppressWarnings("rawtypes") // must use raw types to override Validator method
+    @Override
     public boolean supports (Class clazz) {
         return clazz.equals(Documentation.class);
     }
 
+    @Override
     public void validate( Object obj, Errors errors ) {
         log.info("Validating...");
     }

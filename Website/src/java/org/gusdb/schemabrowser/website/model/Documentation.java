@@ -12,6 +12,8 @@ import java.util.Date;
  */
 public class Documentation implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private long   id;
     private String schema;
     private String table;

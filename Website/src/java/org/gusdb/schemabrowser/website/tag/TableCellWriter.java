@@ -15,6 +15,8 @@ import org.gusdb.dbadmin.model.Table;
  */
 public abstract class TableCellWriter extends TagSupport {
 
+    private static final long serialVersionUID = 1L;
+
     protected Table table = null;
 
     public void setTable( Table table ) {
@@ -25,6 +27,7 @@ public abstract class TableCellWriter extends TagSupport {
         return this.table;
     }
 
+    @Override
     public int doStartTag( ) {
         try {
             JspWriter out = pageContext.getOut( );
@@ -38,6 +41,7 @@ public abstract class TableCellWriter extends TagSupport {
         return SKIP_BODY;
     }
 
+    @Override
     public int doEndTag( ) {
         return SKIP_BODY;
     }

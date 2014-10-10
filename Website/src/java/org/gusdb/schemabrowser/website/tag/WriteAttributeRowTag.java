@@ -10,15 +10,17 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.gusdb.dbadmin.model.Column;
-import org.gusdb.dbadmin.model.ColumnType;
+import org.gusdb.dbadmin.model.Column.ColumnType;
 import org.gusdb.dbadmin.model.Constraint;
-import org.gusdb.dbadmin.model.ConstraintType;
+import org.gusdb.dbadmin.model.Constraint.ConstraintType;
 import org.gusdb.dbadmin.model.GusColumn;
 
 /**
  * @author msaffitz
  */
 public class WriteAttributeRowTag extends TagSupport {
+
+    private static final long serialVersionUID = 1L;
 
     private Column column = null;
     private boolean fromSuperclass = false;
@@ -39,6 +41,7 @@ public class WriteAttributeRowTag extends TagSupport {
         this.fromSuperclass = fromSuperclass;
     }
     
+    @Override
     public int doStartTag( ) {
         try {
             JspWriter out = pageContext.getOut( );
@@ -50,6 +53,7 @@ public class WriteAttributeRowTag extends TagSupport {
         return SKIP_BODY;
     }
 
+    @Override
     public int doEndTag( ) {
         return SKIP_BODY;
     }
@@ -83,8 +87,8 @@ public class WriteAttributeRowTag extends TagSupport {
     private String writeType( Column column ) {
         String trueType = writeTrueType( column );
         if ( !column.getConstraints( ).isEmpty( ) ) {
-            for ( Iterator i = column.getConstraints( ).iterator( ); i.hasNext( ); ) {
-                Constraint cons = (Constraint) i.next( );
+            for ( Iterator<Constraint> i = column.getConstraints( ).iterator( ); i.hasNext( ); ) {
+                Constraint cons = i.next( );
 
                 if ( cons.getType( ) == ConstraintType.FOREIGN_KEY ) {
                     return writeRefType( cons );

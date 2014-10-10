@@ -3,8 +3,6 @@
  */
 package org.gusdb.schemabrowser.website.controller;
 
-import java.util.Iterator;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +27,7 @@ public class EditDocumentationController extends SimpleFormController {
     private DocumentationDAO docDAO;
     private DatabaseFactory  dbFactory;
 
+    @Override
     public ModelAndView onSubmit( Object command ) throws ServletException {
         log.info( "Handling submit of documentation edit" );
         Documentation doc = (Documentation) command;
@@ -44,6 +43,7 @@ public class EditDocumentationController extends SimpleFormController {
         return new ModelAndView( new RedirectView( getSuccessView( ) ) );
     }
 
+    @Override
     protected Object formBackingObject( HttpServletRequest request ) throws ServletException {
         Documentation doc = getDocumentationDAO( ).getDocumentationObject( request.getParameter( "schema" ),
                 request.getParameter( "table" ), request.getParameter( "attribute" ) );

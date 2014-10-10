@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class CategoryDisplayController extends SchemaBrowserController {
 
+    @Override
     public ModelAndView handleRequest( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
         

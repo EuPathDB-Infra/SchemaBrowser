@@ -9,14 +9,16 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import org.gusdb.dbadmin.model.Column;
-import org.gusdb.dbadmin.model.ColumnType;
+import org.gusdb.dbadmin.model.Column.ColumnType;
 import org.gusdb.dbadmin.model.Constraint;
-import org.gusdb.dbadmin.model.ConstraintType;
+import org.gusdb.dbadmin.model.Constraint.ConstraintType;
 
 /**
  * @author msaffitz
  */
 public class ColumnTypeWriter extends TagSupport {
+
+    private static final long serialVersionUID = 1L;
 
     private Column column = null;
 
@@ -28,6 +30,7 @@ public class ColumnTypeWriter extends TagSupport {
         return this.column;
     }
 
+    @Override
     public int doStartTag( ) {
         try {
             JspWriter out = pageContext.getOut( );
@@ -39,6 +42,7 @@ public class ColumnTypeWriter extends TagSupport {
         return SKIP_BODY;
     }
 
+    @Override
     public int doEndTag( ) {
         return SKIP_BODY;
     }
@@ -46,8 +50,8 @@ public class ColumnTypeWriter extends TagSupport {
     private String writeType( Column column ) {
         String trueType = writeTrueType( column );
         if ( !column.getConstraints( ).isEmpty( ) ) {
-            for ( Iterator i = column.getConstraints( ).iterator( ); i.hasNext( ); ) {
-                Constraint cons = (Constraint) i.next( );
+            for ( Iterator<Constraint> i = column.getConstraints( ).iterator( ); i.hasNext( ); ) {
+                Constraint cons = i.next( );
 
                 if ( cons.getType( ) == ConstraintType.FOREIGN_KEY ) {
                     return writeRefType( cons ) + "(<small>" + trueType + "</small>)";

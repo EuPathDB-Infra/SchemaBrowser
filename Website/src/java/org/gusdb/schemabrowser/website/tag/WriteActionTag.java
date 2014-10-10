@@ -14,9 +14,12 @@ import javax.servlet.jsp.JspWriter;
  */
 public class WriteActionTag extends TableCellWriter {
 
+    private static final long serialVersionUID = 1L;
+
     /* (non-Javadoc)
      * @see org.gusdb.schemabrowser.tag.TableCellWriter#writeCell(javax.servlet.jsp.JspWriter)
      */
+    @Override
     protected void writeCell( JspWriter out ) throws IOException {
        
         out.print("<a href=\"table.htm?schema=" + table.getSchema().getName() + "&table=");
