@@ -19,6 +19,6 @@
 	<classpathentry kind="lib" path="lib/java/xdoclet-hibernate-module-1.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/java/xdoclet-xdoclet-module-1.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/java/xjavadoc-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/java/not_deployed/jsp-api-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/java/not-deployed/jsp-api-2.0.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
