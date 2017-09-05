@@ -69,7 +69,6 @@ public class DocumentationDAO extends HibernateDaoSupport {
     private void cacheAll() {
         log.info("Caching all Objects");
         
-        @SuppressWarnings("unchecked")
         List<Documentation> docColl = getHibernateTemplate().find("from Documentation order by createdon desc");
         if ( docColl.isEmpty()) {
             log.warn("Failed to cache any object objects when trying to cache all");

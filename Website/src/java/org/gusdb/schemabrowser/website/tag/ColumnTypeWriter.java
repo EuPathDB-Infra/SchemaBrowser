@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.gusdb.schemabrowser.website.tag;
 
 import java.util.Iterator;
@@ -20,14 +17,14 @@ public class ColumnTypeWriter extends TagSupport {
 
     private static final long serialVersionUID = 1L;
 
-    private Column column = null;
+    private Column _column = null;
 
     public void setColumn( Column column ) {
-        this.column = column;
+        _column = column;
     }
 
     public Column getColumn( ) {
-        return this.column;
+        return _column;
     }
 
     @Override

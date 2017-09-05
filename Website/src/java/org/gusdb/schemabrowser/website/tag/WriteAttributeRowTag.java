@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.gusdb.schemabrowser.website.tag;
 
 import java.io.IOException;
@@ -22,23 +19,23 @@ public class WriteAttributeRowTag extends TagSupport {
 
     private static final long serialVersionUID = 1L;
 
-    private Column column = null;
-    private boolean fromSuperclass = false;
+    private Column _column = null;
+    private boolean _fromSuperclass = false;
 
     public void setColumn( Column column ) {
-        this.column = column;
+        _column = column;
     }
 
     public Column getColumn( ) {
-        return this.column;
+        return _column;
     }
 
     public boolean isFromSuperclass() {
-        return fromSuperclass;
+        return _fromSuperclass;
     }
     
     public void setFromSuperclass(boolean fromSuperclass) {
-        this.fromSuperclass = fromSuperclass;
+        _fromSuperclass = fromSuperclass;
     }
     
     @Override
