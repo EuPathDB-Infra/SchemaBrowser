@@ -1,23 +1,11 @@
-<project name="SchemaBrowser" default="Installation" basedir=".">
+<project name="SchemaBrowser" basedir=".">
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Dependencies  oooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
 
-  <target name="GUS/DBAdmin-Installation">
-    <ant antfile="../GUS/build.xml" target="GUS/DBAdmin-Installation">
-      <property name="project" value="GUS"/>
-      <property name="Component" value="DBAdmin"/>
-      <property name="version" value="3.5"/>
-    </ant>
-  </target>
-  <target name="GusSchema-Installation">
-    <ant antfile="../GusSchema/build.xml" target="GusSchema-Installation">
-      <property name="project" value="GusSchema"/>
-      <property name="version" value="3.5"/>
-    </ant>
-  </target>
-
+  <import file="${projectsDir}/GUS/build.xml" />
+  <import file="${projectsDir}/GusSchema/build.xml" />
 
   <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
   <!-- oooooooooooooooooooooooooo  Installation  oooooooooooooooooooooooooo -->
@@ -26,13 +14,14 @@
   <target name="SchemaBrowser-Installation" depends="GUS/DBAdmin-Installation,
                                                      GusSchema-Installation,
                                                      SchemaBrowser/Website-Installation" >
-    <ant target="defaultProjectInstall"/>
+    <ant target="defaultProjectInstall">
+      <property name="project" value="SchemaBrowser"/>
+    </ant>
   </target>
-   
 
   <!-- ooooooooooooooooooooooo  Install Components  ooooooooooooooooooooooo -->
 
-  <target name="SchemaBrowser/Website-Installation" depends="ProjectTree">
+  <target name="SchemaBrowser/Website-Installation">
     <ant target="defaultComponentInstall">
       <property name="project" value="SchemaBrowser"/>
       <property name="component" value="Website"/>
@@ -45,88 +34,56 @@
 
   <target name="SchemaBrowser-WebInstallation" depends="WebsitePlusGusHome"/>
 
-  <target name="SchemaBrowser/Website-WebInstallation" depends="ProjectTree">
+  <target name="SchemaBrowser/Website-WebInstallation">
     <ant target="defaultWebComponentInstall">
       <property name="project" value="SchemaBrowser"/>
       <property name="component" value="Website"/>
     </ant>
   </target>
 
-  <target name="WebsitePlusGusHome" depends="SchemaBrowser/Website-WebInstallation,checkLinks,libLink,
-                                             GenerateMappings,CopyProperties"/>
+  <target name="WebsitePlusGusHome" depends="SchemaBrowser/Website-WebInstallation,
+                                             checkLinks,
+                                             libLink,
+                                             GenerateMappings,
+                                             CopyProperties"/>
 
   <target name="checkLinks">
-     <available file="${webappTargetDir}/WEB-INF/lib" property="libLinkExists"/>
+    <available file="${webappTargetDir}/WEB-INF/lib" property="libLinkExists"/>
   </target>
 
   <target name="libLink" unless="libLinkExists">
     <symlink link="${webappTargetDir}/WEB-INF/lib" resource="${targetDir}/lib/java"/>
   </target>
-    
-  <target name="GenerateMappings" 
-        description="Generates Hibernate class descriptor files.">
 
-        <!-- Define the hibernatedoclet task -->
-        <taskdef name="hibernatedoclet"
-            classname="xdoclet.modules.hibernate.HibernateDocletTask">
-            <classpath>
-                <fileset dir="${projectsDir}/SchemaBrowser/Website/lib/java">
-                    <include name="*.jar"/>
-                </fileset>
-            </classpath>
-        </taskdef>
-    
-        <!-- Execute the hibernatedoclet task -->
-        <hibernatedoclet force="true" destDir="${webappTargetDir}/WEB-INF/classes"
-            mergeDir="${webappTargetDir}/WEB-INF/classes" verbose="false">
-        
-            <fileset dir="${projectsDir}/SchemaBrowser/Website/src/java">
-                <include name="**/*.java"/>
-            </fileset>
-        
-            <hibernate version="3.0"/>
-        </hibernatedoclet>
-    </target>
-  
+  <target name="GenerateMappings" 
+          description="Generates Hibernate class descriptor files.">
+
+    <!-- Define the hibernatedoclet task -->
+    <taskdef name="hibernatedoclet"
+             classname="xdoclet.modules.hibernate.HibernateDocletTask">
+      <classpath>
+        <fileset dir="${projectsDir}/SchemaBrowser/Website/lib/java">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+    </taskdef>
+
+    <!-- Execute the hibernatedoclet task -->
+    <hibernatedoclet force="true" destDir="${webappTargetDir}/WEB-INF/classes"
+                     mergeDir="${webappTargetDir}/WEB-INF/classes" verbose="false">
+
+      <fileset dir="${projectsDir}/SchemaBrowser/Website/src/java">
+        <include name="**/*.java"/>
+      </fileset>
+
+      <hibernate version="3.0"/>
+    </hibernatedoclet>
+
+  </target>
+
   <target name="CopyProperties">
       <copy file="${targetDir}/config/SchemaBrowser.properties"
             tofile="${webappTargetDir}/WEB-INF/SchemaBrowser.properties"/>
   </target>
 
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooo  Release  ooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="WDK-Release">
-    
-    <ant target="defaultProjectRelease">
-      <property name="cvsroot" value=":ext:cvs.sanger.ac.uk:/cvsroot/GUS"/>
-    </ant>
-  </target>  
-
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooo  Distributable  ooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="WDK-Distributable" depends="ProjectTree">
-
-    <copy todir="${targetDir}">
-      <fileset dir="${projectsDir}" >
-        <exclude name="**/CVS/*" />
-      </fileset>
-    </copy>  
-  </target>  
-
-
-
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooo  ProjectTree  ooooooooooooooooooooooooooo -->
-  <!-- oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo -->
-
-  <target name="ProjectTree" if="${checkout}">
-    <ant target="projectCheckOut"/>
-  </target>  
-
 </project>
-
-
